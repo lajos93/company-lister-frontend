@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-function App() {
+import ItemDetail from "./Components/Item/ItemDetail/ItemDetail";
+import Map from "./Pages/Map/Map";
+
+const App = () => {
+  const [data, setData] = useState([]);
+  const [selectedItem, setSelectedItem] = useState("");
+
+  const selectItemHandle = (val) => {
+    setSelectedItem(val);
+  };
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/search/győrújbarát").then((res) => {
+      setData(res.data[0].data);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ItemDetail selectedItem={selectedItem} />
+      <Map data={data} selectItem={selectItemHandle} />
+    </>
   );
-}
+};
 
 export default App;

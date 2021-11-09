@@ -1,12 +1,11 @@
+import ItemNoWebsite from "../../../UI/Icons/Item/ItemNoWebsite/ItemNoWebsite";
+import ItemWebsite from "../../../UI/Icons/Item/ItemWebsite/ItemWebsite";
+
 const ItemSingular = (props) => {
   return (
     <>
-      <img
-        src="https://icon-library.com/images/linkedin-small-icon/linkedin-small-icon-8.jpg"
-        width={20}
-        height={20}
-        alt=""
-      />
+      {!!props.details.siteURL && <ItemWebsite />}
+      {!props.details.siteURL && <ItemNoWebsite />}
     </>
   );
 };

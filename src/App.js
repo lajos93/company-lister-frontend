@@ -1,7 +1,6 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import ItemDetail from "./Components/Item/ItemDetail/ItemDetail";
+import SideSection from "./Components/SideSection/SideSection";
 import Map from "./Pages/Map/Map";
 
 const App = () => {
@@ -12,15 +11,16 @@ const App = () => {
     setSelectedItem(val);
   };
 
-  useEffect(() => {
-    axios.get("http://localhost:3001/search/győrújbarát").then((res) => {
-      setData(res.data[0].data);
-    });
-  }, []);
+  const searchResultHandle = (val) => {
+    setData(val);
+  };
 
   return (
     <>
-      <ItemDetail selectedItem={selectedItem} />
+      <SideSection
+        selectedItem={selectedItem}
+        searchResult={searchResultHandle}
+      />
       <Map data={data} selectItem={selectItemHandle} />
     </>
   );

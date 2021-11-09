@@ -6,6 +6,10 @@ const ItemDetail = (props) => {
       {props.selectedItem && (
         <div className="itemDetail">
           <span>
+            {console.log(
+              !!props.selectedItem.siteURL,
+              !props.selectedItem.siteURL
+            )}
             {props.selectedItem.name}
             <br />
             {props.selectedItem.address.city}

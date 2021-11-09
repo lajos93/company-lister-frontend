@@ -1,0 +1,25 @@
+//Hack to manually override marker positions (moving them  to the right/left) otherwise markers in the same street would be on top of each other making them hard to click
+
+.item-singular-container-no-website {
+  left: 30px;
+  position: relative;
+}
+
+.item-singular-container-website {
+  right: 30px;
+  position: relative;
+}
+
+//Hack end
+
+.item-singular {
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+}

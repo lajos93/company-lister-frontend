@@ -3,12 +3,14 @@ import ReactMapGL, { Marker } from "react-map-gl";
 import { useState } from "react/cjs/react.development";
 import ItemSingular from "../../Components/Item/ItemSingular/ItemSingular";
 
+import "./Map.scss";
+
 const Map = (props) => {
   //const [selectedItem, setSelectedItem] = useState(null);
   const [viewport, setViewport] = useState({
-    longitude: 17.6365045,
-    latitude: 47.6187048,
-    zoom: 7,
+    longitude: 19.3365045,
+    latitude: 47.1587048,
+    zoom: 7.1,
   });
   const selectItem = (item) => {
     props.selectItem(item);
@@ -31,12 +33,20 @@ const Map = (props) => {
     () =>
       itemHasLonLat(props.data).map((item, i) => (
         <Marker
+          className="item-singular"
           key={item._id}
           longitude={item.address.raw.longt}
           latitude={item.address.raw.lat}
         >
-          <button onClick={() => selectItem(item)}>
-            <ItemSingular />
+          <button
+            onClick={() => selectItem(item)}
+            className={
+              !!item.siteURL
+                ? "item-singular-container-website"
+                : "item-singular-container-no-website"
+            }
+          >
+            <ItemSingular details={item} />
           </button>
         </Marker>
       )),
